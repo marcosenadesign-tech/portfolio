@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Marco Sena — Portfólio</title>
+<meta name="description" content="Marco Sena — Designer Sênior & Diretor de Criação. Motion Design · Edição de Vídeo · Direção de Arte.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Big+Shoulders+Display:wght@600;700;900&family=Inter:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14120F;
+    --ink-2:#1C1913;
+    --paper:#F3EEE4;
+    --accent:#E3A32B;
+    --muted:#8C8577;
+    --line:#33302A;
+    --line-paper:#D8D0BE;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background:var(--ink);
+    color:var(--paper);
+    font-family:'Inter', sans-serif;
+    -webkit-font-smoothing:antialiased;
+  }
+  a{color:inherit;}
+  img{display:block; width:100%; height:auto;}
+
+  .mono{
+    font-family:'IBM Plex Mono', monospace;
+    letter-spacing:0.06em;
+  }
+  .display{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    line-height:0.9;
+  }
+
+  /* ---------- topbar ---------- */
+  .topbar{
+    position:fixed; top:0; left:0; right:0; z-index:50;
+    display:flex; justify-content:space-between; align-items:center;
+    padding:22px clamp(20px,5vw,56px);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12px;
+    letter-spacing:0.08em;
+    text-transform:uppercase;
+    mix-blend-mode:difference;
+    color:#fff;
+    pointer-events:none;
+  }
+  .topbar a{pointer-events:auto; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s;}
+  .topbar a:hover{border-color:currentColor;}
+  .topbar .links{display:flex; gap:24px;}
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative;
+    min-height:100svh;
+    display:flex;
+    flex-direction:column;
+    justify-content:flex-end;
+    overflow:hidden;
+    background:#050403;
+  }
+  .hero-bg{
+    position:absolute; inset:0;
+    background-image:url('assets/solitus-03.jpg');
+    background-size:cover;
+    background-position:center;
+    opacity:0.55;
+    filter:saturate(0.9);
+  }
+  .hero-scrim{
+    position:absolute; inset:0;
+    background:linear-gradient(180deg, rgba(5,4,3,0.15) 0%, rgba(5,4,3,0.55) 55%, rgba(5,4,3,0.97) 100%);
+  }
+  .hero-content{
+    position:relative; z-index:2;
+    padding: 0 clamp(20px,5vw,56px) clamp(48px,7vw,88px);
+  }
+  .hero-eyebrow{
+    font-size:12px;
+    color:var(--accent);
+    margin-bottom:18px;
+    display:flex; align-items:center; gap:10px;
+  }
+  .hero-eyebrow::before{
+    content:'';
+    width:7px; height:7px;
+    background:var(--accent);
+    display:inline-block;
+    border-radius:50%;
+  }
+  .hero h1{
+    font-size:clamp(52px, 11vw, 156px);
+    font-weight:900;
+    letter-spacing:-0.01em;
+  }
+  .hero-role{
+    margin-top:20px;
+    font-size:clamp(16px,2.4vw,22px);
+    font-weight:600;
+    color:var(--paper);
+  }
+  .hero-specialty{
+    margin-top:8px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    color:var(--muted);
+    letter-spacing:0.04em;
+  }
+  .scroll-cue{
+    position:absolute; bottom:28px; left:clamp(20px,5vw,56px);
+    z-index:2;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:var(--muted);
+    display:flex; align-items:center; gap:10px;
+  }
+  .scroll-cue .bar{
+    width:1px; height:34px;
+    background:var(--muted);
+    position:relative;
+    overflow:hidden;
+  }
+  .scroll-cue .bar::after{
+    content:'';
+    position:absolute; top:-100%; left:0; width:100%; height:100%;
+    background:var(--accent);
+    animation:scrollmove 1.8s ease-in-out infinite;
+  }
+  @keyframes scrollmove{
+    0%{top:-100%;} 50%{top:100%;} 50.001%{top:-100%;} 100%{top:-100%;}
+  }
+
+  /* ---------- intro strip ---------- */
+  .intro{
+    background:var(--paper);
+    color:var(--ink);
+    padding:clamp(40px,6vw,64px) clamp(20px,5vw,56px);
+    display:grid;
+    grid-template-columns: 1.4fr 1fr;
+    gap:40px;
+    border-bottom:1px solid var(--line-paper);
+  }
+  .intro p{
+    font-size:clamp(19px,2.6vw,28px);
+    line-height:1.35;
+    font-weight:500;
+    max-width:34ch;
+  }
+  .intro .meta{
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+    color:#5b5648;
+    display:flex; flex-direction:column; gap:10px;
+    justify-content:center;
+  }
+  .intro .meta a{text-decoration:none; border-bottom:1px solid #b7ae95;}
+  .intro .meta a:hover{color:var(--accent); border-color:var(--accent);}
+
+  /* ---------- gallery ---------- */
+  .gallery{
+    padding: clamp(56px,7vw,96px) clamp(20px,5vw,56px) clamp(80px,10vw,120px);
+    display:grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: clamp(28px,4vw,48px) clamp(24px,3vw,40px);
+  }
+  .plate{
+    display:flex;
+    flex-direction:column;
+  }
+  .plate.wide{ grid-column: span 2; }
+  .frame{
+    border:1px solid var(--line);
+    padding:10px;
+    background:var(--ink-2);
+    transition:border-color .25s ease;
+  }
+  .plate:hover .frame{ border-color:var(--accent); }
+  .frame img{ display:block; }
+  .frame .split{
+    display:grid;
+    gap:6px;
+  }
+  .frame .split.two{ grid-template-columns:1fr 1fr; }
+  .frame .split.three{ grid-template-columns:1fr 1fr 1fr; }
+
+  .label{
+    margin-top:16px;
+    display:flex;
+    justify-content:space-between;
+    align-items:baseline;
+    gap:16px;
+    font-family:'IBM Plex Mono', monospace;
+  }
+  .label .num{
+    font-size:11px;
+    color:var(--accent);
+    white-space:nowrap;
+  }
+  .label .name{
+    font-size:15px;
+    color:var(--paper);
+    font-weight:500;
+    flex:1;
+  }
+  .label .cat{
+    font-size:11px;
+    color:var(--muted);
+    text-align:right;
+    white-space:nowrap;
+  }
+
+  @media (max-width:820px){
+    .gallery{ grid-template-columns:1fr; }
+    .plate.wide{ grid-column:span 1; }
+    .intro{ grid-template-columns:1fr; }
+    .frame .split.three{ grid-template-columns:1fr; }
+    .label{ flex-wrap:wrap; }
+    .label .cat{ text-align:left; }
+  }
+
+  /* ---------- footer ---------- */
+  footer{
+    background:var(--paper);
+    color:var(--ink);
+    padding:clamp(48px,7vw,72px) clamp(20px,5vw,56px);
+    display:flex;
+    flex-wrap:wrap;
+    justify-content:space-between;
+    align-items:flex-end;
+    gap:24px;
+  }
+  footer .big{
+    font-family:'Big Shoulders Display', sans-serif;
+    text-transform:uppercase;
+    font-weight:800;
+    font-size:clamp(30px,5vw,56px);
+    line-height:0.95;
+    max-width:14ch;
+  }
+  footer .big a{ text-decoration:none; border-bottom:3px solid var(--accent); }
+  footer .cols{
+    display:flex; gap:56px;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:12.5px;
+  }
+  footer .cols div{ display:flex; flex-direction:column; gap:8px; }
+  footer .cols a{ text-decoration:none; color:#5b5648; }
+  footer .cols a:hover{ color:var(--ink); }
+  footer .copyright{
+    width:100%;
+    margin-top:32px;
+    padding-top:20px;
+    border-top:1px solid var(--line-paper);
+    font-family:'IBM Plex Mono', monospace;
+    font-size:11px;
+    color:#8a8266;
+  }
+
+  /* reduced motion */
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    .scroll-cue .bar::after{ animation:none; }
+  }
+
+  :focus-visible{
+    outline:2px solid var(--accent);
+    outline-offset:3px;
+  }
+</style>
+</head>
+<body>
+
+  <div class="topbar">
+    <span>Marco Sena</span>
+    <span class="links">
+      <a href="mailto:marcosenadesign@gmail.com">E-mail</a>
+      <a href="https://www.linkedin.com/in/marco-sena-706021126/" target="_blank" rel="noopener">LinkedIn</a>
+    </span>
+  </div>
+
+  <section class="hero">
+    <div class="hero-bg"></div>
+    <div class="hero-scrim"></div>
+    <div class="hero-content">
+      <div class="hero-eyebrow mono">Belo Horizonte, MG — Portfólio 2026</div>
+      <h1 class="display">Marco<br>Sena</h1>
+      <div class="hero-role">Designer Sênior &amp; Diretor de Criação</div>
+      <div class="hero-specialty">Motion Design · Edição de Vídeo · Direção de Arte</div>
+    </div>
+    <div class="scroll-cue"><div class="bar"></div><span>rolar</span></div>
+  </section>
+
+  <section class="intro">
+    <p>Dez anos construindo identidades visuais e direção de arte para marcas, campanhas e conteúdo digital — do briefing à entrega.</p>
+    <div class="meta">
+      <span>Disponível para projetos freelance</span>
+      <a href="mailto:marcosenadesign@gmail.com">marcosenadesign@gmail.com</a>
+      <a href="tel:+5531980159864">(31) 98015-9864</a>
+    </div>
+  </section>
+
+  <section class="gallery">
+
+    <div class="plate">
+      <div class="frame"><img src="assets/pandu.jpg" alt="Identidade visual da marca Pandu Comidinhas, aplicada sobre mesa com pratos de comida mineira"></div>
+      <div class="label">
+        <span class="num">01/08</span>
+        <span class="name">Pandu</span>
+        <span class="cat">Identidade visual · Comidinhas</span>
+      </div>
+    </div>
+
+    <div class="plate">
+      <div class="frame"><img src="assets/bloome.jpg" alt="Embalagens da linha de cosméticos Bloomé sobre pedestais, com elementos florais ilustrados"></div>
+      <div class="label">
+        <span class="num">02/08</span>
+        <span class="name">Bloomé Cosméticos</span>
+        <span class="cat">Identidade visual · Embalagem</span>
+      </div>
+    </div>
+
+    <div class="plate">
+      <div class="frame"><img src="assets/nathalia-tavares.jpg" alt="Logotipo de Nathália Tavares, fisioterapia e acupuntura, com ilustração de flor de lótus e mão"></div>
+      <div class="label">
+        <span class="num">03/08</span>
+        <span class="name">Nathália Tavares</span>
+        <span class="cat">Identidade visual · Saúde</span>
+      </div>
+    </div>
+
+    <div class="plate">
+      <div class="frame"><img src="assets/lua-bonita.jpg" alt="Embalagem de pão de queijo Lua Bonita sobre bancada de cozinha"></div>
+      <div class="label">
+        <span class="num">04/08</span>
+        <span class="name">Lua Bonita</span>
+        <span class="cat">Identidade visual · Embalagem</span>
+      </div>
+    </div>
+
+    <div class="plate wide">
+      <div class="frame">
+        <div class="split two">
+          <img src="assets/afeto-01.jpg" alt="Manual de marca do Afeto Projetos Culturais, com logotipo, aplicações e paleta de cores">
+          <img src="assets/afeto-02.jpg" alt="Logotipo Afeto Projetos Culturais sobre foto de manifestação cultural popular">
+        </div>
+      </div>
+      <div class="label">
+        <span class="num">05/08</span>
+        <span class="name">Afeto Projetos Culturais</span>
+        <span class="cat">Identidade visual · Manual de marca</span>
+      </div>
+    </div>
+
+    <div class="plate wide">
+      <div class="frame">
+        <div class="split two">
+          <img src="assets/mariana-01.jpg" alt="Padrão gráfico e aplicações da campanha de Mariana Albuquerque, deputada estadual">
+          <img src="assets/mariana-02.jpg" alt="Peça principal da campanha de Mariana Albuquerque com paleta de cores e tipografia">
+        </div>
+      </div>
+      <div class="label">
+        <span class="num">06/08</span>
+        <span class="name">Mariana Albuquerque</span>
+        <span class="cat">Identidade visual · Campanha política</span>
+      </div>
+    </div>
+
+    <div class="plate wide">
+      <div class="frame">
+        <div class="split two">
+          <img src="assets/surfe-01.jpg" alt="Landing page completa do webinar Fora da Rota, da Surfe Digital">
+          <img src="assets/surfe-02.jpg" alt="Banner de divulgação do webinar Fora da Rota com foto de Isa Mendes, CEO da Surfe Digital">
+        </div>
+      </div>
+      <div class="label">
+        <span class="num">07/08</span>
+        <span class="name">Surfe Digital</span>
+        <span class="cat">Direção de arte · Landing page</span>
+      </div>
+    </div>
+
+    <div class="plate wide">
+      <div class="frame">
+        <div class="split three">
+          <img src="assets/solitus-01.jpg" alt="Mockup de caneca com o logotipo da Solitus Energia">
+          <img src="assets/solitus-02.jpg" alt="Mockup de placa de fachada com o logotipo da Solitus Energia">
+          <img src="assets/solitus-03.jpg" alt="Logotipo da Solitus Energia sobre fundo escuro texturizado">
+        </div>
+      </div>
+      <div class="label">
+        <span class="num">08/08</span>
+        <span class="name">Solitus Energia</span>
+        <span class="cat">Identidade visual · Aplicações</span>
+      </div>
+    </div>
+
+  </section>
+
+  <footer>
+    <div class="big">Vamos criar<br>algo <a href="mailto:marcosenadesign@gmail.com">juntos?</a></div>
+    <div class="cols">
+      <div>
+        <span style="color:#14120F; font-weight:600;">Contato</span>
+        <a href="mailto:marcosenadesign@gmail.com">marcosenadesign@gmail.com</a>
+        <a href="tel:+5531980159864">(31) 98015-9864</a>
+      </div>
+      <div>
+        <span style="color:#14120F; font-weight:600;">Perfis</span>
+        <a href="https://www.linkedin.com/in/marco-sena-706021126/" target="_blank" rel="noopener">LinkedIn</a>
+        <a href="https://marcosenadesign.myportfolio.com" target="_blank" rel="noopener">Portfólio completo</a>
+      </div>
+    </div>
+    <div class="copyright">© 2026 Marco Vinícius Campos de Sena — Belo Horizonte, MG</div>
+  </footer>
+
+</body>
+</html>
