@@ -55,7 +55,30 @@
   .topbar a{pointer-events:auto; text-decoration:none; border-bottom:1px solid transparent; transition:border-color .2s;}
   .topbar a:hover{border-color:currentColor;}
   .topbar .links{display:flex; gap:24px;}
-
+.marquee{
+    background:var(--accent);
+    color:var(--ink);
+    overflow:hidden;
+    white-space:nowrap;
+    padding:10px 0;
+    border-top:1px solid var(--ink);
+    border-bottom:1px solid var(--ink);
+  }
+  .marquee-track{
+    display:inline-flex;
+    animation:marquee 26s linear infinite;
+    font-family:'IBM Plex Mono', monospace;
+    font-size:13px;
+    letter-spacing:0.04em;
+    font-weight:500;
+  }
+  @keyframes marquee{
+    from{ transform:translateX(0); }
+    to{ transform:translateX(-50%); }
+  }
+  @media (prefers-reduced-motion: reduce){
+    .marquee-track{ animation:none; }
+  }
   /* ---------- hero ---------- */
   .hero{
     position:relative;
@@ -294,7 +317,12 @@
       <div class="hero-role">Designer Sênior &amp; Diretor de Criação</div>
       <div class="hero-specialty">Motion Design · Edição de Vídeo · Direção de Arte</div>
     </div>
-   
+   <div class="marquee" aria-hidden="true">
+    <div class="marquee-track">
+      <span>Direção de Criação ✦ Motion Design ✦ Identidade Visual ✦ Edição de Vídeo ✦ UI &amp; Web Design ✦ Direção de Arte ✦ </span>
+      <span>Direção de Criação ✦ Motion Design ✦ Identidade Visual ✦ Edição de Vídeo ✦ UI &amp; Web Design ✦ Direção de Arte ✦ </span>
+    </div>
+  </div>
   </section>
 
   <section class="intro">
